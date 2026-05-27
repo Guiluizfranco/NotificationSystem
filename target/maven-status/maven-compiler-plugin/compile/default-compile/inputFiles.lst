@@ -1,0 +1,10 @@
+/home/guil_dev/NetBeansProjects/notification-system-api/src/main/java/com/mycompany/notification/system/api/NotificationSystemApi.java
+/home/guil_dev/NetBeansProjects/notification-system-api/src/main/java/com/mycompany/notification/system/api/controller/NotificationController.java
+/home/guil_dev/NetBeansProjects/notification-system-api/src/main/java/com/mycompany/notification/system/api/controller/UserController.java
+/home/guil_dev/NetBeansProjects/notification-system-api/src/main/java/com/mycompany/notification/system/api/dao/UsersDAO.java
+/home/guil_dev/NetBeansProjects/notification-system-api/src/main/java/com/mycompany/notification/system/api/database/Connection_DB.java
+/home/guil_dev/NetBeansProjects/notification-system-api/src/main/java/com/mycompany/notification/system/api/model/Notification.java
+/home/guil_dev/NetBeansProjects/notification-system-api/src/main/java/com/mycompany/notification/system/api/model/User.java
+/home/guil_dev/NetBeansProjects/notification-system-api/src/main/java/com/mycompany/notification/system/api/service/User_Service.java
+/home/guil_dev/NetBeansProjects/notification-system-api/src/main/java/com/mycompany/notificationsystem/api/dto/UserDTO.java
+/home/guil_dev/NetBeansProjects/notification-system-api/src/main/java/com/mycompany/notificationsystem/api/dto/ValidationUser.java
