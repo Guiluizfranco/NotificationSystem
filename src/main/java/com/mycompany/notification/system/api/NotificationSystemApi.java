@@ -4,9 +4,9 @@
 
 package com.mycompany.notification.system.api;
 
-import com.mycompany.notification.system.api.database.Connection_DB;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.mycompany.notification.system.api.database.Connection_DB;
 
 
 
@@ -15,6 +15,7 @@ public class NotificationSystemApi {
 
     public static void main(String[] args) {
            SpringApplication.run(NotificationSystemApi.class, args);
+           
            
 
            //System.out.println("1 - Criar usuário");

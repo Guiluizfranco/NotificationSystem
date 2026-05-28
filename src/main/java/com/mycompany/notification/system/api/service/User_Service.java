@@ -22,15 +22,18 @@ public class User_Service {
     public ValidationUser ValidationUser(UserDTO dto){
         
         if(!ValidationName(dto)){            
-            validationUser.ValidationUser(false, "O nome inserido não é válido");  
+            validationUser.setValidation(false);
+            validationUser.setMessage("O nome inserido não é válido");
         }
         
         else if(!ValidationEmail(dto)){
-            validationUser.ValidationUser(false, "O email inserido não é válido");
+            validationUser.setValidation(false);
+            validationUser.setMessage("O email inserido não é válido");
         }
         
-        else if(userDAO.SearchUsers(dto)){
-            validationUser.ValidationUser(false, "O email já existe");
+        else if(ValidationExistsEmail(dto)){
+            validationUser.setValidation(false);
+            validationUser.setMessage("O email já existe");  
         }
         
         else {
@@ -40,7 +43,8 @@ public class User_Service {
             user.setSenha(dto.getSenha());
             
             userDAO.CreateUsers(user);
-            validationUser.ValidationUser(true, "Usuario cadastrado com sucesso");
+            validationUser.setValidation(true);
+            validationUser.setMessage("Usuario cadastrado com sucesso");
 
         }
         
@@ -71,6 +75,18 @@ public class User_Service {
             
             return true;
         }
+    }
+    
+    public boolean ValidationExistsEmail(UserDTO user){
+     
+        if(userDAO.SearchUsers(user)){
+            return false;
+        
+        }else{
+            
+            return true;
+        }
+        
     }
     
             

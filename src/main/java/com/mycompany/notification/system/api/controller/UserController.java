@@ -17,7 +17,7 @@ import com.mycompany.notificationsystem.api.dto.ValidationUser;
 @RequestMapping("/users")
 public class UserController {
     
-    User_Service userService = new User_Service();
+    User_Service service = new User_Service();
     
     @GetMapping
     public String Conectar(){
@@ -27,7 +27,7 @@ public class UserController {
     @PostMapping
     public ValidationUser CreateUser(@RequestBody UserDTO user){
         
-        return userService.ValidationUser(user);
+        return service.ValidationUser(user);
         
     }
     

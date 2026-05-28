@@ -1,10 +1,14 @@
+com/mycompany/notification/system/api/dao/NotificationDAO.class
 com/mycompany/notificationsystem/api/dto/UserDTO.class
 com/mycompany/notification/system/api/model/User.class
+com/mycompany/notification/system/api/service/NotificationService.class
 com/mycompany/notificationsystem/api/dto/ValidationUser.class
-com/mycompany/notification/system/api/database/Connection_DB.class
-com/mycompany/notification/system/api/controller/UserController.class
 com/mycompany/notification/system/api/dao/UsersDAO.class
 com/mycompany/notification/system/api/NotificationSystemApi.class
 com/mycompany/notification/system/api/model/Notification.class
 com/mycompany/notification/system/api/controller/NotificationController.class
+com/mycompany/notificationsystem/api/dto/NotificationDTO.class
 com/mycompany/notification/system/api/service/User_Service.class
+com/mycompany/notificationsystem/api/dto/ValidationNotification.class
+com/mycompany/notification/system/api/database/Connection_DB.class
+com/mycompany/notification/system/api/controller/UserController.class

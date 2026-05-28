@@ -2,30 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.notification.system.api.model;
+package com.mycompany.notificationsystem.api.dto;
 
 /**
  *
  * @author guil_dev
  */
-public class Notification {
+public class NotificationDTO {
     
-    protected int id;
     protected String title;
     protected String message;
-    protected boolean read;
     protected int sender_id;
     protected int receiver_id;
     
-    public Notification(){     
+    public NotificationDTO(){
     
-    }
-    
-    public int getId(){
-        return id;
-    }
-    public void setId(int id){
-        this.id = id;
     }
     
     public String getTitle(){
@@ -42,13 +33,6 @@ public class Notification {
         this.message = message;
     }
     
-    public boolean getRead(){
-        return read;
-    }
-    public void setRead(boolean read){
-        this.read = read;
-    }
-    
     public int getSenderID(){
         return sender_id;
     }
@@ -61,10 +45,5 @@ public class Notification {
     }
     public void setReceiverID(int receiver_id){
         this.receiver_id = receiver_id;
-    }
-            
-    @Override
-    public String toString(){
-        return "| "+getTitle()+" | "+getMessage()+" | "+getRead()+" | "+getSenderID()+" | "+getReceiverID()+" |";
     }
 }

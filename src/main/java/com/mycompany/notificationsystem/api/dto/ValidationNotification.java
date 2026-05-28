@@ -8,12 +8,12 @@ package com.mycompany.notificationsystem.api.dto;
  *
  * @author guil_dev
  */
-public class ValidationUser {
+public class ValidationNotification {
     
     protected boolean validation;
-    protected String message;
+    protected String message; 
     
-    public ValidationUser(){
+    public ValidationNotification(){
         
     }
     
