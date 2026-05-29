@@ -10,8 +10,10 @@ package com.mycompany.notificationsystem.api.dto;
  */
 public class NotificationDTO {
     
+
     protected String title;
     protected String message;
+    protected boolean read;
     protected int sender_id;
     protected int receiver_id;
     
@@ -32,6 +34,13 @@ public class NotificationDTO {
     public void setMessage(String message){
         this.message = message;
     }
+    
+    public boolean getRead(){
+        return read;
+    }
+    public void setRead(boolean read){
+        this.read = read;
+    } 
     
     public int getSenderID(){
         return sender_id;

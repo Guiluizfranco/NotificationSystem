@@ -7,10 +7,13 @@ package com.mycompany.notification.system.api.dao;
 import com.mycompany.notification.system.api.database.Connection_DB;
 import com.mycompany.notification.system.api.model.Notification;
 import com.mycompany.notificationsystem.api.dto.NotificationDTO;
+import com.mycompany.notificationsystem.api.dto.NotificationListResponseDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -20,7 +23,6 @@ public class NotificationDAO {
     
     Connection_DB conn = new Connection_DB();
     Connection con = conn.getConnection();
-    Notification notification = new Notification();
     
     public void CreateNotification(Notification notification){
         
@@ -46,7 +48,63 @@ public class NotificationDAO {
         
     }
     
-    public boolean SearchSenderID(NotificationDTO dto){
+    public List SearchAllNotification(Notification notification, List<Notification> list){
+        
+        String sql = "SELECT * FROM Notification";
+        
+        
+        try{
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                
+                notification.setId(rs.getInt("id"));
+                notification.setTitle(rs.getString("titulo"));
+                notification.setMessage(rs.getString("mensagem"));
+                notification.setRead(rs.getBoolean("lida"));
+                notification.setSenderID(rs.getInt("sender_id"));
+                notification.setReceiverID(rs.getInt("receiver_id"));
+                
+                list.add(notification);
+                
+                
+            }
+            
+            
+        }catch(SQLException e){       
+            
+            
+        }
+        
+        return list;
+        
+    }
+    
+    public void SearchNotificationID(Integer id){
+        
+        String sql = "SELECT * FROM Notification WHERE id = ?";
+        
+    }
+    
+    public void SearchNotificationSenderID(Integer id){
+        
+    }
+    
+    public void SearchNotificationReceiverID(Integer id){
+        
+    }
+    
+    public void SearchNotificationTitle(String title){
+        
+    }
+    
+    public void SearchNotificationRead(Boolean read){
+        
+    }
+    
+    public boolean SearchSenderIDUsers(NotificationDTO dto){
         
         String sql = "SELECT * FROM Users WHERE id = ?";
         
@@ -68,7 +126,7 @@ public class NotificationDAO {
         
     }
     
-    public boolean SearchReceiverID(NotificationDTO dto){
+    public boolean SearchReceiverIDUsers(NotificationDTO dto){
         
         String sql = "SELECT * FROM Users WHERE id = ?";
         

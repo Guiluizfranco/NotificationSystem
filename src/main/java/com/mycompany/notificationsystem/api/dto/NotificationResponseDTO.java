@@ -8,20 +8,22 @@ package com.mycompany.notificationsystem.api.dto;
  *
  * @author guil_dev
  */
-public class ValidationNotification {
+public class NotificationResponseDTO extends BaseResponseDTO{
     
-    protected boolean validation;
-    protected String message; 
     
-    public ValidationNotification(){
+    protected String title;
+    protected String message;
+    
+    public NotificationResponseDTO(){
         
     }
     
-    public boolean getValidation(){
-        return validation;
+    
+    public String getTitle(){
+        return title;
     }
-    public void setValidation(boolean validation){
-        this.validation = validation;
+    public void setTitle(String title){
+        this.title = title;
     }
     
     public String getMessage(){

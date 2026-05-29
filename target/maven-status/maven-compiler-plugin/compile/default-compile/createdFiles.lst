@@ -9,6 +9,8 @@ com/mycompany/notification/system/api/model/Notification.class
 com/mycompany/notification/system/api/controller/NotificationController.class
 com/mycompany/notificationsystem/api/dto/NotificationDTO.class
 com/mycompany/notification/system/api/service/User_Service.class
-com/mycompany/notificationsystem/api/dto/ValidationNotification.class
+com/mycompany/notificationsystem/api/dto/NotificationResponseDTO.class
 com/mycompany/notification/system/api/database/Connection_DB.class
 com/mycompany/notification/system/api/controller/UserController.class
+com/mycompany/notificationsystem/api/dto/NotificationListResponseDTO.class
+com/mycompany/notificationsystem/api/dto/BaseResponseDTO.class
