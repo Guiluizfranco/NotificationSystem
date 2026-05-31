@@ -48,7 +48,7 @@ public class NotificationDAO {
         
     }
     
-    public List SearchAllNotification(Notification notification, List<Notification> list){
+    public List SearchAllNotification(List<Notification> list){
         
         String sql = "SELECT * FROM Notification";
         
@@ -59,6 +59,8 @@ public class NotificationDAO {
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
+                
+                Notification notification = new Notification();
                 
                 notification.setId(rs.getInt("id"));
                 notification.setTitle(rs.getString("titulo"));
@@ -82,25 +84,183 @@ public class NotificationDAO {
         
     }
     
-    public void SearchNotificationID(Integer id){
+    public List SearchNotificationID(List<Notification> list, int id){
         
         String sql = "SELECT * FROM Notification WHERE id = ?";
         
-    }
-    
-    public void SearchNotificationSenderID(Integer id){
+        try{
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                
+                Notification notification = new Notification();
+
+                notification.setId(rs.getInt("id"));
+                notification.setTitle(rs.getString("titulo"));
+                notification.setMessage(rs.getString("mensagem"));
+                notification.setRead(rs.getBoolean("lida"));
+                notification.setSenderID(rs.getInt("sender_id"));
+                notification.setReceiverID(rs.getInt("receiver_id"));
+                
+                list.add(notification);
+                
+                
+            }
+            
+            
+        }catch(SQLException e){       
+            
+            
+        }
+        
+        return list;
         
     }
     
-    public void SearchNotificationReceiverID(Integer id){
+    public List SearchNotificationSenderID(List<Notification> list, int sender_id){
+        
+        String sql = "SELECT * FROM Notification WHERE sender_id = ?";
+        
+        try{
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, sender_id);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                
+                Notification notification = new Notification();
+                
+                notification.setId(rs.getInt("id"));
+                notification.setTitle(rs.getString("titulo"));
+                notification.setMessage(rs.getString("mensagem"));
+                notification.setRead(rs.getBoolean("lida"));
+                notification.setSenderID(rs.getInt("sender_id"));
+                notification.setReceiverID(rs.getInt("receiver_id"));
+                
+                list.add(notification);
+                
+                
+            }
+            
+            
+        }catch(SQLException e){       
+            
+            
+        }
+        
+        return list;
         
     }
     
-    public void SearchNotificationTitle(String title){
+    public List SearchNotificationReceiverID(List<Notification> list, int receiver_id){
+        
+        String sql = "SELECT * FROM Notification WHERE receiver_id = ?";
+        
+        try{
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, receiver_id);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                
+                Notification notification = new Notification();
+                
+                notification.setId(rs.getInt("id"));
+                notification.setTitle(rs.getString("titulo"));
+                notification.setMessage(rs.getString("mensagem"));
+                notification.setRead(rs.getBoolean("lida"));
+                notification.setSenderID(rs.getInt("sender_id"));
+                notification.setReceiverID(rs.getInt("receiver_id"));
+                
+                list.add(notification);
+                
+                
+            }
+            
+            
+        }catch(SQLException e){       
+            
+            
+        }
+        
+        return list;
         
     }
     
-    public void SearchNotificationRead(Boolean read){
+    public List SearchNotificationTitle(List<Notification> list, String title){
+        
+        String sql = "SELECT * FROM Notification WHERE titulo = ?";
+        
+        try{
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, title);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                
+                Notification notification = new Notification();
+                
+                notification.setId(rs.getInt("id"));
+                notification.setTitle(rs.getString("titulo"));
+                notification.setMessage(rs.getString("mensagem"));
+                notification.setRead(rs.getBoolean("lida"));
+                notification.setSenderID(rs.getInt("sender_id"));
+                notification.setReceiverID(rs.getInt("receiver_id"));
+                
+                list.add(notification);
+                
+                
+            }
+            
+            
+        }catch(SQLException e){       
+            
+            
+        }
+        
+        return list;
+        
+    }
+    
+    public List SearchNotificationRead(List<Notification> list, Boolean read){
+        
+        String sql = "SELECT * FROM Notification WHERE lida = ?";
+        
+        try{
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setBoolean(1, read);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                
+                Notification notification = new Notification();
+                
+                notification.setId(rs.getInt("id"));
+                notification.setTitle(rs.getString("titulo"));
+                notification.setMessage(rs.getString("mensagem"));
+                notification.setRead(rs.getBoolean("lida"));
+                notification.setSenderID(rs.getInt("sender_id"));
+                notification.setReceiverID(rs.getInt("receiver_id"));
+                
+                list.add(notification);
+                
+                
+            }
+            
+            
+        }catch(SQLException e){       
+            
+            
+        }
+        
+        return list;
         
     }
     

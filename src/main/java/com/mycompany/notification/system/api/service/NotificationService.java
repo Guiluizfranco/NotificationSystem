@@ -28,30 +28,51 @@ public class NotificationService {
         
         validationListResponse.setValidation(true);
         validationListResponse.setMessageValidation("Funcionou");
-        validationListResponse.setList(dao.SearchAllNotification(notification, list));
+        validationListResponse.setList(dao.SearchAllNotification(list));
         
         System.out.println(list);
         
         return validationListResponse;
     }
     
-    public NotificationListResponseDTO SelectNotificationsFilter(Integer id, Integer sender_id, Integer receiver_id, String titulo, Boolean read){
+    public NotificationListResponseDTO SelectNotificationsFilter(Integer id, Integer sender_id, Integer receiver_id, String title, Boolean read){
+        
+        List<Notification> list = new ArrayList<>();
         
         if(id != null){
             validationListResponse.setValidation(true);
-            dao.SearchNotificationID(id);
+            
+            validationListResponse.setList(dao.SearchNotificationID(list, id));
+
         }
         else if(sender_id != null){
-            dao.SearchNotificationSenderID(sender_id);
+            validationListResponse.setValidation(true);
+            
+            validationListResponse.setList(dao.SearchNotificationSenderID(list, sender_id));
         }
         else if(receiver_id != null){
-            dao.SearchNotificationReceiverID(receiver_id);
+            validationListResponse.setValidation(true);
+            
+            validationListResponse.setList(dao.SearchNotificationReceiverID(list, receiver_id));
         }
-        else if(titulo != null){
-            dao.SearchNotificationTitle(titulo);
+        else if(title != null){
+            validationListResponse.setValidation(true);
+            
+            validationListResponse.setList(dao.SearchNotificationTitle(list, title));
         }
         else if(read != null){
-            dao.SearchNotificationRead(read);
+            validationListResponse.setValidation(true);
+            
+            validationListResponse.setList(dao.SearchNotificationRead(list, read));
+        }
+        
+        if(validationListResponse.getList().isEmpty()){
+            
+            validationListResponse.setMessageValidation("Nenhuma notificação foi encontrada");
+            
+        }else{
+            
+            validationListResponse.setMessageValidation("Notificações encontradas");
         }
         
         return validationListResponse;
