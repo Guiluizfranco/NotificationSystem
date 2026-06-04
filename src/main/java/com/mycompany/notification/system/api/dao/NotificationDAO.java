@@ -264,14 +264,36 @@ public class NotificationDAO {
         
     }
     
-    public boolean SearchSenderIDUsers(NotificationDTO dto){
+    
+    public boolean UpdateNotificationRead(int id){
         
-        String sql = "SELECT * FROM Users WHERE id = ?";
+        String sql = "UPDATE Notification SET lida = ? WHERE id = ?";
+        
+        try{
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setBoolean(1, true);
+            ps.setInt(2, id);
+            
+            ps.executeUpdate();
+            
+            return true;
+            
+        }catch(SQLException e){
+            
+            return false;
+        }
+        
+    }
+    
+    public boolean SearchNotificationID(int id){
+        
+        String sql = "SELECT * FROM Notification WHERE id = ?";
         
         try{
             
           PreparedStatement ps = con.prepareStatement(sql);
-          ps.setInt(1, dto.getSenderID());
+          ps.setInt(1, id);
           ResultSet rs = ps.executeQuery();
             
           return rs.next();
@@ -286,26 +308,32 @@ public class NotificationDAO {
         
     }
     
-    public boolean SearchReceiverIDUsers(NotificationDTO dto){
+    public boolean isRead(int id){
         
-        String sql = "SELECT * FROM Users WHERE id = ?";
+        String sql = "SELECT lida FROM Notification WHERE id = ?";
+        
+        Boolean validationRead = null;
         
         try{
             
-          PreparedStatement ps = con.prepareStatement(sql);
-          ps.setInt(1, dto.getReceiverID());
-          ResultSet rs = ps.executeQuery();
-          
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
             
-          return rs.next();
+            if(rs.next()){
+                
+                validationRead = rs.getBoolean("lida");
+                
+            }
             
+            
+ 
         }catch(SQLException e){
             
-            System.out.println(e.getMessage());
-            return false;
             
         }
-        
+
+        return validationRead;
     }
     
 }

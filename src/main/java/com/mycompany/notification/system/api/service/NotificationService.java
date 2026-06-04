@@ -6,6 +6,7 @@ package com.mycompany.notification.system.api.service;
 import com.mycompany.notificationsystem.api.dto.NotificationResponseDTO;
 import com.mycompany.notificationsystem.api.dto.NotificationDTO;
 import com.mycompany.notification.system.api.dao.NotificationDAO;
+import com.mycompany.notification.system.api.dao.UsersDAO;
 import com.mycompany.notification.system.api.model.Notification;
 import com.mycompany.notificationsystem.api.dto.NotificationListResponseDTO;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class NotificationService {
     NotificationResponseDTO validationNotification = new NotificationResponseDTO();
     NotificationListResponseDTO validationListResponse = new NotificationListResponseDTO();
     NotificationDAO dao = new NotificationDAO();
+    UsersDAO daoUser = new UsersDAO();
     Notification notification = new Notification();
     
     public NotificationListResponseDTO SelectAllNotifications(){
@@ -86,13 +88,13 @@ public class NotificationService {
             validationNotification.setMessageValidation("Todos os campos precisam serem preenchidos");
             
         }
-        else if(!ValidationExistisSenderID(dto)){
+        else if(!daoUser.SearchReceiverIDUsers(dto.getSenderID())){
             
             validationNotification.setValidation(false);
             validationNotification.setMessageValidation("O ID do remetente não foi encontrado");
             
         }
-        else if(!ValidationExistisReceiverID(dto)){
+        else if(!daoUser.SearchReceiverIDUsers(dto.getReceiverID())){
             
             validationNotification.setValidation(false);
             validationNotification.setMessageValidation("O ID do destinatário não foi encontrado");
@@ -115,6 +117,35 @@ public class NotificationService {
         
         return validationNotification;
     }
+    
+    public NotificationResponseDTO MarkAsRead(int id){
+        
+        if(dao.SearchNotificationID(id)){
+            
+            if(dao.isRead(id)){
+                
+                validationNotification.setValidation(false);
+                validationNotification.setMessageValidation("A notificação já está marcada como lida");
+                
+            }
+            else if(dao.UpdateNotificationRead(id)){
+                
+                validationNotification.setValidation(true);
+                validationNotification.setMessageValidation("Mensagem lida!");
+                
+            }else{
+                
+                validationNotification.setValidation(false);
+                validationNotification.setMessage("Não foi possível marcar lida a notification");
+            }
+        }else{
+            
+            validationNotification.setValidation(false);
+            validationNotification.setMessage("Não foi encontrado a notificação");
+        }
+        
+        return validationNotification;
+    }
 
     public boolean ValidationNull(NotificationDTO dto){
         
@@ -128,24 +159,5 @@ public class NotificationService {
         }
         
     }
-    
-    public boolean ValidationExistisSenderID(NotificationDTO dto){
-        
-        if(dao.SearchSenderIDUsers(dto)){
-            return true;
-        }else{
-            return false;
-        }
-        
-    }
-    
-    public boolean ValidationExistisReceiverID(NotificationDTO dto){
-        
-        if(dao.SearchReceiverIDUsers(dto)){
-            return true;
-        }else{
-            return false;
-        }
-        
-    }
+
 }

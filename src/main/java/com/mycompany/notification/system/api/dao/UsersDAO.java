@@ -70,4 +70,48 @@ public class UsersDAO {
         
     }
     
+    public boolean SearchSenderIDUsers(int id){
+        
+        String sql = "SELECT * FROM Users WHERE id = ?";
+        
+        try{
+            
+          PreparedStatement ps = con.prepareStatement(sql);
+          ps.setInt(1, id);
+          ResultSet rs = ps.executeQuery();
+            
+          return rs.next();
+            
+            
+        }catch(SQLException e){
+            
+            System.out.println(e.getMessage());
+            return false;
+            
+        }
+        
+    }
+    
+    public boolean SearchReceiverIDUsers(int id){
+        
+        String sql = "SELECT * FROM Users WHERE id = ?";
+        
+        try{
+            
+          PreparedStatement ps = con.prepareStatement(sql);
+          ps.setInt(1, id);
+          ResultSet rs = ps.executeQuery();
+          
+            
+          return rs.next();
+            
+        }catch(SQLException e){
+            
+            System.out.println(e.getMessage());
+            return false;
+            
+        }
+        
+    }
+    
 }

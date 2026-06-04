@@ -12,6 +12,8 @@ import com.mycompany.notificationsystem.api.dto.NotificationResponseDTO;
 import com.mycompany.notification.system.api.service.NotificationService;
 import com.mycompany.notificationsystem.api.dto.NotificationDTO;
 import com.mycompany.notificationsystem.api.dto.NotificationListResponseDTO;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -41,6 +43,12 @@ public class NotificationController {
     public NotificationResponseDTO SendNotification(@RequestBody NotificationDTO notification){
         
         return service.SendNotification(notification);
+    }
+    
+    @PutMapping("/read/{id}")
+    public NotificationResponseDTO MarkAsRead(@PathVariable int id){
+        
+        return service.MarkAsRead(id);
     }
     
 }
