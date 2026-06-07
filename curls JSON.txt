@@ -1,0 +1,54 @@
+CURLS
+
+Users:
+
+POST:
+curl -X POST -H "Content-Type: application/json" -d '{"nome": "Gui", "email": "gui@gmail.com", "senha": "admin"}' http://localhost:8080/users
+
+GET:
+curl http://localhost:8080/users
+
+curl http://localhost:8080/users/filter?id=13
+curl http://localhost:8080/users/filter?id=20
+
+curl http://localhost:8080/users/filter?nome=Gui
+curl http://localhost:8080/users/filter?nome=Teste
+
+curl http://localhost:8080/users/filter?email=gui@gmail.com
+curl http://localhost:8080/users/filter?email=teste@hotmail.com
+
+
+
+
+
+
+Notification:
+
+POST:
+curl -X POST -H "Content-Type: application/json" -d '{"title": "Teste", "message": "está funcionando?", "sender_id": 8, "receiver_id": 10}' http://localhost:8080/notifications
+
+curl -X POST -H "Content-Type: application/json" -d '{"title": "Teste", "message": "está funcionando?", "senderID": 6, "receiverID": 10}' http://localhost:8080/notifications
+
+
+GET:
+curl http://localhost:8080/notifications
+
+curl http://localhost:8080/notifications/filter?read=false
+curl http://localhost:8080/notifications/filter?read=true
+
+curl http://localhost:8080/notifications/filter?title="Teste"
+curl http://localhost:8080/notifications/filter?title="flase"
+
+curl http://localhost:8080/notifications/filter?senderId="6"
+curl http://localhost:8080/notifications/filter?senderId="9"
+
+curl http://localhost:8080/notifications/filter?receiverId="10"
+curl http://localhost:8080/notifications/filter?receiverId="4"
+
+curl http://localhost:8080/notifications/filter?id="11"
+curl http://localhost:8080/notifications/filter?id="3"
+
+PUT:
+curl -X PUT http://localhost:8080/notifications/read/11 
+
+
