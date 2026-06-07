@@ -4,28 +4,41 @@
  */
 package com.mycompany.notification.system.api.controller;
 
-import com.mycompany.notification.system.api.service.User_Service;
+import com.mycompany.notification.system.api.service.UserService;
 import com.mycompany.notificationsystem.api.dto.UserDTO;
+import com.mycompany.notificationsystem.api.dto.UserListResponseDTO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.mycompany.notificationsystem.api.dto.ValidationUser;
+import com.mycompany.notificationsystem.api.dto.UserResponseDTO;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
     
-    User_Service service = new User_Service();
+    UserService service = new UserService();
     
     @GetMapping
-    public String Conectar(){
-        return "API funcionando";
+    public UserListResponseDTO SelectAll(){
+        
+        return service.SelectAllUsers();
+        
+    }
+    
+    @GetMapping("/filter")
+    public UserListResponseDTO SelectFilter(
+            @RequestParam (required = false) Integer id,
+            @RequestParam (required = false) String nome,
+            @RequestParam (required = false) String email)
+    {
+        return service.SelectFilterUsers(id, nome, email);
     }
 
     @PostMapping
-    public ValidationUser CreateUser(@RequestBody UserDTO user){
+    public UserResponseDTO CreateUser(@RequestBody UserDTO user){
         
         return service.ValidationUser(user);
         

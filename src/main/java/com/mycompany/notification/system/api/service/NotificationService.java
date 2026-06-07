@@ -28,12 +28,19 @@ public class NotificationService {
         
         List<Notification> list = new ArrayList<>();
         
-        validationListResponse.setValidation(true);
-        validationListResponse.setMessageValidation("Funcionou");
         validationListResponse.setList(dao.SearchAllNotification(list));
         
-        System.out.println(list);
+        if(validationListResponse.getList().isEmpty()){
+            
+        validationListResponse.setValidation(true);
+        validationListResponse.setMessageValidation("Nenhuma notificação encontrada");
+            
+        }else{
         
+        validationListResponse.setValidation(true);
+        validationListResponse.setMessageValidation("Notificações encontradas");
+        }
+
         return validationListResponse;
     }
     
