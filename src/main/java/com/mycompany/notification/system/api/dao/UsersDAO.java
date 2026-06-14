@@ -33,6 +33,8 @@ public class UsersDAO {
             return rs.next();
             
         }catch(SQLException e){
+            
+            System.out.println(e.getMessage());
          
             return false;
             
@@ -46,7 +48,7 @@ public class UsersDAO {
         
         String sql =  "INSERT INTO Users (nome, email, senha) VALUES (?, ?, ?)";
         
-        boolean validation = true;
+        
         
         try{
             
@@ -59,14 +61,18 @@ public class UsersDAO {
             
             ps.close();
             
+           return true;
+            
 
         }catch(SQLException e){
             
-            validation = false;
+            System.out.println(e.getMessage());
+            
+            return false;
        
         }
         
-        return validation;
+      
         
     }
     
@@ -104,6 +110,7 @@ public class UsersDAO {
           
             
           return rs.next();
+          
             
         }catch(SQLException e){
             
@@ -136,7 +143,11 @@ public class UsersDAO {
                 
             }
             
+            ps.close();
+            
         }catch(SQLException e){
+            
+            System.out.println(e.getMessage());
             
         }
         
@@ -166,7 +177,11 @@ public class UsersDAO {
                 
             }
             
+            ps.close();
+            
         }catch(SQLException e){
+            
+            System.out.println(e.getMessage());
             
         }
         
@@ -196,7 +211,11 @@ public class UsersDAO {
                 
             }
             
+            ps.close();
+            
         }catch(SQLException e){
+            
+            System.out.println(e.getMessage());
             
         }
         
@@ -226,11 +245,109 @@ public class UsersDAO {
                 
             }
             
+            ps.close();
+            
         }catch(SQLException e){
+            
+            System.out.println(e.getMessage());
             
         }
         
         return list;
     }
     
+    public boolean UpdateUserName(String nome, int id){
+        
+        String sql = "UPDATE Users SET nome = ? WHERE id = ?";
+        
+        try{
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, nome);
+            ps.setInt(2, id);
+            
+            ps.executeUpdate();
+            
+            ps.close();
+            
+            return true;
+            
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            
+            return false;
+        }
+        
+    }
+    
+    public boolean UpdateUserEmail(String email, int id){
+        
+        String sql = "UPDATE Users SET email = ? WHERE id = ?";
+        
+        try{
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, email);
+            ps.setInt(2, id);
+            
+            ps.executeUpdate();
+            
+            ps.close();
+            
+            return true;
+            
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            
+            return false;
+        }
+        
+    }
+    
+    public boolean UpdateUserSenha(String senha, int id){
+        
+        String sql = "UPDATE Users SET senha = ? WHERE id = ?";
+        
+        try{
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, senha);
+            ps.setInt(2, id);
+            
+            ps.executeUpdate();
+            
+            ps.close();
+            
+            return true;
+            
+        }catch(SQLException e){
+            
+            return false;
+            
+        }
+        
+    }
+    
+    public boolean DeleteUser(int id){
+        
+        String sql = "DELETE FROM Users WHERE id = ?";
+        
+        try{
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            
+            ps.executeUpdate();
+            
+            ps.close();
+            
+            return true;
+        }catch(SQLException e){
+            
+            System.out.println(e.getMessage());
+            return false;
+            
+        }
+        
+    }
 }

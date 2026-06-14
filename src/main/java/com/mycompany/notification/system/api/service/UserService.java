@@ -144,4 +144,113 @@ public class UserService {
         return userValidationList;
     }
     
+    public UserResponseDTO UpdateUser(int id, UserDTO userDTO){
+        
+        List<User> list = new ArrayList<>();
+        
+        user.setNome(userDTO.getNome());
+        user.setEmail(userDTO.getEmail());
+        user.setSenha(userDTO.getSenha());
+        
+        userDAO.SearchUserId(id, list);
+        
+        if(list.isEmpty()){
+            
+            validationUser.setValidation(false);
+            validationUser.setMessageValidation("Nenhum usuário encontrado com esse id!");
+            
+        }else{
+                
+        if(user.getNome()!= null){
+
+            if(userDAO.UpdateUserName(user.getNome(), id)){
+                validationUser.setValidation(true);
+                validationUser.setMessageValidation("Dados atualizados!");
+                list.clear();
+            }
+            else{
+                validationUser.setValidation(false);
+                validationUser.setMessageValidation("Não foi possível atualizar os dados!");
+            }
+        }
+        
+        if(user.getSenha()!= null){
+            
+            if(userDAO.UpdateUserSenha(user.getSenha(), id)){
+                validationUser.setValidation(true);
+                validationUser.setMessageValidation("Dados atualizados!");
+            }
+            else{
+                validationUser.setValidation(false);
+                validationUser.setMessageValidation("Não foi possível atualizar os dados!");
+            }
+                
+        }
+        
+        if(user.getEmail()!= null){
+            
+            userDAO.SearchUserEmail(user.getEmail(), list);
+            
+            if(list.isEmpty()){
+
+               if(userDAO.UpdateUserEmail(user.getEmail(), id)){
+                   
+                   validationUser.setValidation(true);
+                   validationUser.setMessageValidation("Dados atualizados!");
+                   
+               }else{
+                   
+                   validationUser.setValidation(false);
+                   validationUser.setMessageValidation("Não foi possível atualizar o e-mail!");
+                   
+               }
+               
+            
+            }else{
+                validationUser.setValidation(false);
+                validationUser.setMessageValidation("E-mail já utilizado. Insira outro e-mail!");
+            }
+        }
+        
+        if(user.getNome() == null && user.getEmail() == null && user.getSenha() == null){
+            validationUser.setValidation(false);
+            validationUser.setMessageValidation("Insira algum valor");
+        }
+        
+        }
+      
+        
+        return validationUser;
+    }
+    
+    public UserResponseDTO DeleteUser(int id){
+        
+       List<User> list = new ArrayList<>();
+
+       userDAO.SearchUserId(id, list);
+  
+        if(list.isEmpty()){
+            
+            validationUser.setValidation(false);
+            validationUser.setMessageValidation("Usuário não encontrado");
+            
+        }
+        
+        else if(userDAO.DeleteUser(id)){
+         
+            validationUser.setValidation(true);
+            validationUser.setMessageValidation("Usuário deletado");
+            
+        }else{
+            
+            validationUser.setValidation(false);
+            validationUser.setMessageValidation("Não foi possível deletar o usuário");
+            
+        }
+        
+        return validationUser;
+        
+    }
+        
+    
 }

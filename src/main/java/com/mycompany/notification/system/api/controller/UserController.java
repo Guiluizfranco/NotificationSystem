@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.mycompany.notificationsystem.api.dto.UserResponseDTO;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
@@ -43,5 +46,22 @@ public class UserController {
         return service.ValidationUser(user);
         
     }
+    
+    @PutMapping("update/{id}")
+    public UserResponseDTO UpdateUser(
+            @RequestBody UserDTO user,
+            @PathVariable int id)
+    {
+     
+        return service.UpdateUser(id, user);
+        
+        
+    }
+    
+    @DeleteMapping("delete/{id}")
+    public UserResponseDTO DeleteUser(@PathVariable int id){
+        return service.DeleteUser(id);
+    }
+    
     
 }

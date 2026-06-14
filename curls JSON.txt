@@ -4,7 +4,7 @@ Users:
 
 POST:
 curl -X POST -H "Content-Type: application/json" -d '{"nome": "Gui", "email": "gui@gmail.com", "senha": "admin"}' http://localhost:8080/users
-
+------------------------------------------------------------------------------------------------------------------
 GET:
 curl http://localhost:8080/users
 
@@ -16,10 +16,45 @@ curl http://localhost:8080/users/filter?nome=Teste
 
 curl http://localhost:8080/users/filter?email=gui@gmail.com
 curl http://localhost:8080/users/filter?email=teste@hotmail.com
+------------------------------------------------------------------------------------------------------------------
+PUT:
+curl -X PUT http://localhost:8080/users/update/15 \
+-H "Content-Type: application/json" \
+-d '{
+    "nome": "Guilherme"
+}'
 
+curl -X PUT http://localhost:8080/users/update/15 \
+-H "Content-Type: application/json" \
+-d '{
+    "email": "guilherme@hotmail"
+}'
 
+curl -X PUT http://localhost:8080/users/update/15 \
+-H "Content-Type: application/json" \
+-d '{
+    "senha": "123456"
+}'
 
+curl -X PUT http://localhost:8080/users/update/15 \
+-H "Content-Type: application/json" \
+-d '{
+    "nome": "teste",
+    "email": "teste@hotmail",
+    "senha": "654321"
+}'
 
+curl -X PUT http://localhost:8080/users/update/16 \
+-H "Content-Type: application/json" \
+-d '{
+    "nome": "teste",
+    "email": "teste",
+    "senha": "654321"
+}'
+------------------------------------------------------------------------------------------------------------------
+DELETE:
+curl -X DELETE http://localhost:8080/users/delete/16
+------------------------------------------------------------------------------------------------------------------
 
 
 Notification:
@@ -29,7 +64,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"title": "Teste", "message
 
 curl -X POST -H "Content-Type: application/json" -d '{"title": "Teste", "message": "está funcionando?", "senderID": 6, "receiverID": 10}' http://localhost:8080/notifications
 
-
+------------------------------------------------------------------------------------------------------------------
 GET:
 curl http://localhost:8080/notifications
 
@@ -47,7 +82,7 @@ curl http://localhost:8080/notifications/filter?receiverId="4"
 
 curl http://localhost:8080/notifications/filter?id="11"
 curl http://localhost:8080/notifications/filter?id="3"
-
+------------------------------------------------------------------------------------------------------------------
 PUT:
 curl -X PUT http://localhost:8080/notifications/read/11 
 

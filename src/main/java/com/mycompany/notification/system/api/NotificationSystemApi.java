@@ -6,7 +6,6 @@ package com.mycompany.notification.system.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import com.mycompany.notification.system.api.database.Connection_DB;
 
 
 
